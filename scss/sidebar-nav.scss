@@ -1,0 +1,238 @@
+// http://dbushell.github.com/Responsive-Off-Canvas-Menu/step4.html
+
+
+@import "style-4";
+
+
+/* ----- checkbox fix for android ------- */
+body {
+  -webkit-animation: bugfix infinite 1s;
+}
+
+@-webkit-keyframes bugfix { 
+  from {padding:0;} 
+  to {padding:0;} 
+}
+
+
+/* ----------- nav ------------- */
+.btn {
+	float: left;
+	margin: 1.5em 0 0 0;
+	background: #999;
+	padding: 0.25em 2%;
+	color: #fff;
+	cursor: pointer;
+	border-radius: 0.25em;
+	background-color: #5b5756;
+	background-image: -webkit-linear-gradient(top, #6b6766, #5b5756);
+	background-image:    -moz-linear-gradient(top, #6b6766, #5b5756);
+	background-image:     -ms-linear-gradient(top, #6b6766, #5b5756);
+	background-image:      -o-linear-gradient(top, #6b6766, #5b5756);
+	background-image:         linear-gradient(top, #6b6766, #5b5756);
+	
+	&:hover {
+		background-color: #7b7776;
+		background-image: -webkit-linear-gradient(top, #8b8786, #7b7776);
+		background-image:    -moz-linear-gradient(top, #8b8786, #7b7776);
+		background-image:     -ms-linear-gradient(top, #8b8786, #7b7776);
+		background-image:      -o-linear-gradient(top, #8b8786, #7b7776);
+		background-image:         linear-gradient(top, #8b8786, #7b7776);
+	}
+}
+
+#toggle {
+	position: absolute;
+	left: -999em;
+}
+
+.close {
+	display: none;
+	cursor: pointer;
+	color: #fff;
+
+	span {
+		border: 2px solid #fff;
+		border-radius: 50%;
+		padding: 0.2em 0.4em;
+	}
+		
+	&:hover span {border-color: #999;}
+}
+
+.close:hover {
+	color: #999;
+}
+
+nav {
+	position: fixed;
+	padding: 5em 0 0 0;
+	background: #3b3736;
+	width: 75%;
+	left: -75%;
+	height: 100%;
+
+	-webkit-transition: left 0.5s;
+	   -moz-transition: left 0.5s;
+	    -ms-transition: left 0.5s;
+	     -o-transition: left 0.5s;
+	        transition: left 0.5s;
+}
+
+#nav {
+	margin: 0.1875em 0 0 0;
+	padding: 0;
+	list-style: none;
+	border-top: 1px solid #777;
+		
+	a {
+		text-decoration: none;
+		color: #fff;
+		padding: 1em 0 1em 5%;
+		display: block;
+		border-bottom: 1px solid #777;
+		height: 4em;
+		background-image: -webkit-linear-gradient(top, #4b4746, #3b3736);
+		background-image:    -moz-linear-gradient(top, #4b4746, #3b3736);
+		background-image:     -ms-linear-gradient(top, #4b4746, #3b3736);
+		background-image:      -o-linear-gradient(top, #4b4746, #3b3736);
+		background-image:         linear-gradient(top, #4b4746, #3b3736);
+
+		&:hover {
+			background: #4b4746;
+			background-image: -webkit-linear-gradient(top, #5b5756, #4b4746);
+			background-image:    -moz-linear-gradient(top, #5b5756, #4b4746);
+			background-image:     -ms-linear-gradient(top, #5b5756, #4b4746);
+			background-image:      -o-linear-gradient(top, #5b5756, #4b4746);
+			background-image:         linear-gradient(top, #5b5756, #4b4746);
+		}
+	}
+}
+
+.wrapper {
+	width: 100%;
+	overflow: hidden;
+}
+
+.inner {
+	float: right;
+	width: 100%;
+
+	-webkit-transition: 0.5s;
+	   -moz-transition: 0.5s;
+	    -ms-transition: 0.5s;
+	     -o-transition: 0.5s;
+	        transition: 0.5s;
+}
+
+:checked ~ nav {
+	left: 0;
+	
+	.close {
+		position: fixed;
+		top: 1.5em;
+		left: 4%;
+		display: block;
+	}
+}
+
+:checked ~ .wrapper .inner {
+	margin-right: -75%;
+}
+
+
+
+/* --------- Header------------ */
+header {
+	color:#eee;
+	text-align: center;
+	background: #2b2726;
+}
+
+.logo {
+	margin: 1.25em auto;
+	width: 200px;
+}
+
+
+
+/* ----------- media queries --------------------- */
+@media screen and (min-width: 48em) {
+	header {padding-bottom: 5em;}
+	.logo {
+		float: left;
+		margin: 1.25em 0;
+	}
+	
+	.btn {display: none;}
+	
+	:checked ~ .wrapper .inner {
+		margin-right: 0%;
+		-webkit-transition: 0;
+		   -moz-transition: 0;
+		    -ms-transition: 0;
+		     -o-transition: 0;
+		        transition: 0;
+	}
+	
+	nav,
+	:checked ~ nav {
+		float: right;
+		position: static;
+		background: transparent;
+		padding: 0;
+		height: auto;
+		width: 100%;
+		
+		-webkit-transition: 0;
+		   -moz-transition: 0;
+		    -ms-transition: 0;
+		     -o-transition: 0;
+		        transition: 0;
+		
+		.close {display: none;}
+		
+	}
+	
+	#nav {
+		position: absolute;
+		top: 1.5em;
+		right: 2%;
+		border: 0;
+		
+		li {display: inline; float: left;}
+		li.current a {color: #7b7776;}
+		
+		a {
+			padding: 0 1.5em;
+			display: inline;
+			border: 0;
+			background: transparent;
+
+			&:hover {background: transparent;}
+		}
+	}
+	
+	#sidebar {
+		margin-top: 5.5em;
+	}
+}
+
+@media screen and (min-width: 64em) {
+	nav #nav {
+
+		a {padding: 1.6em;}
+		label a {padding: 0;}
+	}
+}
+
+@media screen and (min-width: 75em) {
+	nav #nav {
+
+		a {padding: 0 2.35em;}
+		label a {padding: 0;}
+	}
+}
+
+
+// eof

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Responsive Navigation Demo: Off Canvas Sidebar Only Pattern</title>
+
+<meta charset="utf-8">
+<meta name="description" content="" />
+
+<link rel="stylesheet" href="css/sidebar-nav.css">
+
+<!--[if lt IE 9]>
+<script src="js/html5.js" type="text/javascript"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+
+	<input id="toggle" type="checkbox" />
+	<nav>
+		<label class="close" for="toggle" onclick><span>X</span> Close</label>
+		<ul id="nav">
+			<li><a href="">Back to Post</a></li>
+			<li class="current"><a href="sidebar-nav.html">Sidebar Nav</a></li>
+			<li><a href="sidebar-nav-js.html">Sidebar Nav JS</a></li>
+			<li><a href="panels.html">Panels</a></li>
+			<li><a href="sidebar+.html">Sidebar+</a></li>
+		</ul>
+	</nav>
+
+<div class="wrapper">
+	<div class="inner">
+		<header>
+			<div class="container">
+				<label class="btn" for="toggle" onclick>Menu</label>
+				<img class="logo" src="images/logo.png" width="252" height="46" />
+			</div>
+		</header>
+		
+		<div class="container main-content">
+	
+			<div id="content">
+				<h2>Off Canvas Sidebar Nav Pattern</h2>
+				<p>All off canvas patterns solve the problem of space, by placing some content off screen until needed. In this pattern the navigation is off canvas left when the page first loads on smaller screens.</p>
+				<p>In its place a single menu button that when clicked slides the menu in and the content mostly off screen right. The click event is controlled with a checkbox that's positioned far off the screen.</p>
+				
+				<h3>The HTML</h3>
+				<p>For this pattern we need to work we need to wrap most of our elements inside two divs (wrapper and inner). The navigation sits outside these 2 container divs.</p>
+				<p>Other than the menu and the toggle button, I've stripped out what's inside each of the divs so you can focus on the structure.</p>
+				
+				<pre>
+&lt;input id="toggle" type="checkbox" /&gt;
+&lt;nav&gt;
+  &lt;label class="close" for="toggle" onclick&gt;&lt;span&gt;X&lt;/span&gt; Close&lt;/label&gt;
+  &lt;ul id="nav"&gt;
+    &lt;li>&lt;a href=""&gt;Back to Post&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="current"&gt;&lt;a href="sidebar-nav.html">Sidebar Nav&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="sidebar-nav-js.html"&gt;Sidebar Nav JS&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="sidebar+.html"&gt;Sidebar+&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="panels.html"&gt;Panels&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;div class="wrapper"&gt;
+  &lt;div class="inner"&gt;
+    &lt;header&gt;
+      &lt;label class="btn" for="toggle" onclick&gt;Menu&lt;/label&gt;
+    &lt;/header&gt;
+		
+    &lt;div class="container main-content"&gt;
+      &lt;div id="content"&gt;&lt;/div&gt;
+      &lt;div id="sidebar"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+      
+    &lt;section class="subfooter"&gt;&lt;/section&gt;
+    &lt;div id="footer"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+				</pre>
+				
+				<h3>The Default CSS</h3>
+				<p></p>
+				
+				<pre>
+.btn {
+  float: left;
+  margin: 1.5em 0 0 0;
+  background: #999;
+  padding: 0.25em 2%;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 0.25em;
+  background-color: #5b5756;
+  background-image: -webkit-linear-gradient(top, #6b6766, #5b5756);
+  background-image:    -moz-linear-gradient(top, #6b6766, #5b5756);
+  background-image:     -ms-linear-gradient(top, #6b6766, #5b5756);
+  background-image:      -o-linear-gradient(top, #6b6766, #5b5756);
+  background-image:         linear-gradient(top, #6b6766, #5b5756);
+}
+	
+.btn:hover {
+  background-color: #7b7776;
+  background-image: -webkit-linear-gradient(top, #8b8786, #7b7776);
+  background-image:    -moz-linear-gradient(top, #8b8786, #7b7776);
+  background-image:     -ms-linear-gradient(top, #8b8786, #7b7776);
+  background-image:      -o-linear-gradient(top, #8b8786, #7b7776);
+  background-image:         linear-gradient(top, #8b8786, #7b7776);
+}
+
+
+#toggle {
+  position: absolute;
+  left: -999em;
+}
+
+nav {
+  position: fixed;
+  padding: 5em 0 0 0;
+  background: #3b3736;
+  width: 75%;
+  left: -75%;
+  height: 100%;
+
+  -webkit-transition: left 0.5s;
+     -moz-transition: left 0.5s;
+      -ms-transition: left 0.5s;
+       -o-transition: left 0.5s;
+          transition: left 0.5s;
+}
+
+.close {
+  cursor: pointer;
+  color: #fff;
+}
+
+.close:hover {
+  color: #999;
+}
+
+.close span {
+  border: 2px solid #fff;
+  border-radius: 50%;
+  padding: 0.2em 0.4em;
+}
+		
+#nav {
+  margin: 0.1875em 0 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid #777;
+}
+		
+#nav a {
+  text-decoration: none;
+  color: #fff;
+  padding: 1em 0 1em 5%;
+  display: block;
+  border-bottom: 1px solid #777;
+  height: 4em;
+  background-image: -webkit-linear-gradient(top, #4b4746, #3b3736);
+  background-image:    -moz-linear-gradient(top, #4b4746, #3b3736);
+  background-image:     -ms-linear-gradient(top, #4b4746, #3b3736);
+  background-image:      -o-linear-gradient(top, #4b4746, #3b3736);
+  background-image:         linear-gradient(top, #4b4746, #3b3736);
+}
+
+#nav a:hover {
+  background: #4b4746;
+  background-image: -webkit-linear-gradient(top, #5b5756, #4b4746);
+  background-image:    -moz-linear-gradient(top, #5b5756, #4b4746);
+  background-image:     -ms-linear-gradient(top, #5b5756, #4b4746);
+  background-image:      -o-linear-gradient(top, #5b5756, #4b4746);
+  background-image:         linear-gradient(top, #5b5756, #4b4746);
+}
+
+.wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.inner {
+  float: right;
+  width: 100%;
+  margin-right: 0;
+
+  -webkit-transition: 0.5s;
+     -moz-transition: 0.5s;
+      -ms-transition: 0.5s;
+       -o-transition: 0.5s;
+          transition: 0.5s;
+}
+				</pre>
+				
+				<h3>The CSS to Toggle the Menu</h3>
+				<p>To slide in the menu we adjust its left position. To slide out the content we adjust its right margin. For both we use the checkbox hack and target the element with a sibling selector.</p>
+				
+				<pre>
+:checked ~ nav {
+  left: 0;
+}
+	
+:checked ~ nav .close {
+  position: fixed;
+  top: 1.5em;
+  left: 4%;
+  display: block;
+}
+
+:checked ~ .wrapper .inner {
+  margin-right: -75%;
+}
+				</pre>
+				
+				<h3>The CSS in Media Queries</h3>
+				<p>Once the screen is wider than 48em we convert the menu to a horizontal navigation bar at the top right of the page.</p>
+				
+				<pre>
+@media screen and (min-width: 48em) {
+  header {
+    padding-bottom: 5em;
+  }
+  
+  .logo {
+    float: left;
+    margin: 1.25em 0;
+  }
+	
+  .btn {display: none;}
+	
+  :checked ~ .wrapper .inner {
+    margin-right: 0%;
+    -webkit-transition: 0;
+       -moz-transition: 0;
+        -ms-transition: 0;
+         -o-transition: 0;
+            transition: 0;
+  }
+	
+  nav,
+  :checked ~ nav {
+    float: right;
+    position: static;
+    background: transparent;
+    padding: 0;
+    height: auto;
+    width: 100%;
+    -webkit-transition: 0;
+       -moz-transition: 0;
+        -ms-transition: 0;
+         -o-transition: 0;
+            transition: 0;
+  }
+		
+  nav .close,
+  :checked ~ nav .close {
+    display: none;
+  }
+		
+  #nav {
+    position: absolute;
+    top: 1.5em;
+    right: 2%;
+    border: 0;
+  }
+			
+  #nav li {display: inline; float: left;}
+  #nav li.current a {color: #7b7776;}
+			
+  #nav a {
+    padding: 0 1.5em;
+    display: inline;
+    border: 0;
+    background: transparent;
+  }
+				
+  #nav a:hover {background: transparent;}
+
+  #sidebar {
+    margin-top: 5.5em;
+  }
+}
+				</pre>
+	
+			</div>	
+	
+			<div id="sidebar">
+				<h2>Additional Resources</h2>
+				<ul>
+					<li><a href="http://bradfrostweb.com/blog/web/responsive-nav-patterns/">Responsive Navigation Patterns</a></li>
+					<li><a href="http://bradfrostweb.com/blog/web/complex-navigation-patterns-for-responsive-design/">Complex Navigation Patterns for Responsive Design</a></li>
+					<li><a href="http://www.vanseodesign.com/web-design/responsive-navigation-patterns/">7 Responsive Navigation Patterns</a></li>
+					<li><a href="http://friendlymachine.net/posts/2012/navigation-patterns-responsive-design">Navigation Patterns in Responsive Design</a></li>
+				</ul>
+				
+				<h2>Examples</h2>
+				<p>Below are some examples of the sidebar nav pattern using css pseudo selectors for the click event</p>
+				<ul>
+					<li><a href="http://codepen.io/jetpacmonkey/pen/ktIJz">A different version of this pattern on Codepen</a></li>
+					<li><a href="http://codepen.io/chriscoyier/pen/umEgv">cssPanelMenu - uses :target instead of :checked</a></li>
+					<li><a href="http://css-tricks.com/off-canvas-menu-with-css-target/">CSS-Tricks Tutorial for cssPanelMenu</a></li>
+				</ul>
+			</div>
+			
+		</div>
+		
+		<section class="subfooter">
+			<div class="container">
+				<aside class="tuts-network">
+					<h4>Tuts+ Network</h4>
+					<ul>
+				    <li><a href="http://psd.tutsplus.com/"target="_blank" class="psdtuts">Psdtuts+</a></li>
+						<li><a href="http://net.tutsplus.com/"target="_blank" class="nettuts">Nettuts+</a></li>
+						<li><a href="http://vector.tutsplus.com/"target="_blank" class="vectortuts">Vectortuts+</a></li>
+				  </ul>
+				</aside>
+	
+				<aside class="tuts-network">
+					<ul>
+						<li><a href="http://audio.tutsplus.com/"target="_blank" class="audiotuts">Audiotuts+</a></li>
+						<li><a href="http://photo.tutsplus.com/" target="_blank" class="phototuts">Phototuts+</a></li>
+						<li><a href="http://mobile.tutsplus.com/" target="_blank" class="mobiletuts">Mobiletuts+</a></li>
+						<li><a href="http://webdesign.tutsplus.com/" target="_blank" class="webdesigntuts">Webdesigntuts+</a></li>
+					</ul>
+				</aside>
+				
+				<aside class="tuts-network">
+					<ul>
+						<li><a href="http://wp.tutsplus.com/" target="_blank" class="wptuts">Wptuts+</a></li>
+						<li><a href="http://ae.tutsplus.com/" target="_blank" class="aetuts">Aetuts+</a></li>
+						<li><a href="http://cg.tutsplus.com/" target="_blank" class="cgtuts">Cgtuts+</a></li>  					
+					</ul>
+				</aside>
+			</div>
+		</section>
+	
+		<div id="footer">
+			<div class="container">
+			<p class="credit">Demo by Steven Bradley &mdash; <a href="http://www.vanseodesign.com">Vanseo Design</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Responsive Navigation Demo: Off Canvas Sidebar+ Pattern</title>
+
+<meta charset="utf-8">
+<meta name="description" content="" />
+
+<link rel="stylesheet" href="css/sidebar+.css">
+
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/jquery-toggle-class-oc-2.js" type="text/javascript"></script>
+
+<!--[if lt IE 9]>
+<script src="js/html5.js" type="text/javascript"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+
+	<header>
+		<div class="container">
+			<a href="" class="btn btn-1">Menu</a>
+			<img class="logo" src="images/logo.png" width="252" height="46" />
+			<a  href="" class="btn btn-2">More</a>
+		</div>
+	</header>
+
+	<div class="wrapper">
+		<div class="inner">
+
+			<nav>
+				<ul id="nav">
+					<li><a href="">Back to Post</a></li>
+					<li><a href="sidebar-nav.html">Sidebar Nav</a></li>
+					<li><a href="sidebar-nav-js.html">Sidebar Nav JS</a></li>
+					<li><a href="panels.html">Panels</a></li>
+					<li class="current"><a href="sidebar+.html">Sidebar+</a></li>
+				</ul>
+			</nav>
+
+			<div class="container main-content">
+		
+				<div id="content">
+					<h2>Off Canvas Sidebar+ Pattern</h2>
+					<p>This pattern has two sidebars off screen. A menu to the left and a sidebar with more information to the right. Click the button for each reveals that sidebar and clicking it again moves it off screen.</p>
+					<p>In addition with either of the menu or sidebar open, clicking the opposite button will move the open content off screen and reveal the content that was clicked. Because of this we'll use Javascript for the click events.</p>
+					
+					<h3>The HTML</h3>
+					<p>The html structure below is similar to the html in the panels pattern. The changes are due to the change in click events. Gone are the checkboxes and labels. In are standard links. Also removed is the button to show the main content, since we'll reveal the main content by closing the open menu or sidebar.</p>
+					
+					<pre>
+&lt;header&gt;
+  &lt;div class="container"&gt;
+    &lt;a class="btn btn-1"&gt;Menu&lt;/a&gt;
+    &lt;img class="logo" src="images/logo.png" width="252" height="46" /&gt;
+    &lt;a class="btn btn-2"&gt;More&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;div class="wrapper"&gt;
+  &lt;div class="inner"&gt;
+
+    &lt;nav&gt;
+      &lt;ul id="nav"&gt;
+        &lt;li&gt;&lt;a href=""&gt;Back to Post&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="sidebar-nav.html"&gt;Sidebar Nav&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="sidebar-nav-js.html"&gt;Sidebar Nav JS&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="current"&gt;&lt;a href="sidebar+.html"&gt;Sidebar+&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="panels.html"&gt;Panels&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+
+    &lt;div class="container main-content"&gt;
+      &lt;div id="content"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div id="sidebar"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;section class="subfooter"&gt;&lt;/section&gt;
+&lt;div id="footer"&gt;&lt;/div&gt;
+					</pre>
+					
+					<h3>The Default CSS</h3>
+					<p>The default css is exactly the same as it was for the panels pattern. Not a single thing is different.</p>
+					
+					<h3>The CSS to Toggle the Menu and Sidebar</h3>
+					<p>The css here is nearly identical to that of the panels pattern. We now only have 2 buttons so there's one less button state to check.</p>
+					<p>Also we're now using Javascript instead of radio buttons, so instead of a css :checked state, we look for the addition of a .menu or .more class.</p>
+					
+					<pre>
+.inner.menu {
+  margin-left: 0;
+}
+
+.inner.more {
+  margin-left: -200%;	
+}
+					</pre>
+					
+					<h3>The CSS in Media Queries</h3>
+					<p>Like much of the css above, the media queries are near identical to the panels pattern. The only difference is again one less button state and looking for classes as opposed to a checked pseudo selector.</p>
+					
+					<pre>
+@media screen and (min-width: 48em) {
+  .inner,
+  .inner.menu {
+    margin-left: 0%;
+  }
+	
+  .inner.more {
+    margin-left: -37%;
+  }
+}
+					</pre>
+					
+					<h3>The Javascript</h3>
+					<p>The Javascript is similar to what's in the sidebar js pattern. Here we have 2 jQuery functions, one for each button. The function intercepts the click function of the link and either adds or removes the appropriate class depending on the current state.</p>
+					<p>A new wrinkle here is that as we add the class to show either the menu or the sidebar, we also remove the class on the other in case it's open.</p>
+
+					<pre>
+$(document).ready(function() {
+  $('a.btn-1').click(function() {
+    if($(this).parents('header').siblings('.wrapper').find('.inner').hasClass('menu')){
+      $(this).parents('header').siblings('.wrapper').find('.inner').removeClass('menu');
+    } else {
+      $(this).parents('header').siblings('.wrapper').find('.inner').addClass('menu');
+      $(this).parents('header').siblings('.wrapper').find('.inner').removeClass('more');
+    }
+    return false;
+  });
+
+  $('a.btn-2').click(function() {
+    if($(this).parents('header').siblings('.wrapper').find('.inner').hasClass('more')){
+      $(this).parents('header').siblings('.wrapper').find('.inner').removeClass('more');
+    } else {
+      $(this).parents('header').siblings('.wrapper').find('.inner').addClass('more');
+      $(this).parents('header').siblings('.wrapper').find('.inner').removeClass('menu');
+    }
+    return false;
+  });
+});
+					</pre>
+				</div>	
+		
+			</div>
+
+			<div id="sidebar">
+				<h2>Additional Resources</h2>
+				<ul>
+					<li><a href="http://bradfrostweb.com/blog/web/responsive-nav-patterns/">Responsive Navigation Patterns</a></li>
+					<li><a href="http://bradfrostweb.com/blog/web/complex-navigation-patterns-for-responsive-design/">Complex Navigation Patterns for Responsive Design</a></li>
+					<li><a href="http://www.vanseodesign.com/web-design/responsive-navigation-patterns/">7 Responsive Navigation Patterns</a></li>
+					<li><a href="http://friendlymachine.net/posts/2012/navigation-patterns-responsive-design">Navigation Patterns in Responsive Design</a></li>
+				</ul>
+				
+				<h2>Examples</h2>
+				<p>Below are some examples of the sidebar+ nav pattern, where both sidebars open and close independent of each other.</p>
+				<ul>
+					<li><a href="http://jasonweaver.name/lab/offcanvas/">Demo by Jason Weaver</a></li>
+					<li><a href="http://jasonweaver.name/lab/lw-slidetopnav/">Variation where menu slides in from top. Demo by Jason Weaver</a></li>
+					<li><a href="http://www.zurb.com/playground/playground/off-canvas/offcanvas-2.html">Variation where menu slides in from top. Demo by Zurb</a></li>
+					<li><a href="http://www.vinceallen.com/offcanvas/">Demo by Vince Allen - This demo has a css only falback</a></li>
+				</ul>
+			</div>
+		
+		</div>
+	</div>
+		
+	<section class="subfooter">
+		<div class="container">
+			<aside class="tuts-network">
+				<h4>Tuts+ Network</h4>
+				<ul>
+			    <li><a href="http://psd.tutsplus.com/"target="_blank" class="psdtuts">Psdtuts+</a></li>
+					<li><a href="http://net.tutsplus.com/"target="_blank" class="nettuts">Nettuts+</a></li>
+					<li><a href="http://vector.tutsplus.com/"target="_blank" class="vectortuts">Vectortuts+</a></li>
+			  </ul>
+			</aside>
+	
+			<aside class="tuts-network">
+				<ul>
+					<li><a href="http://audio.tutsplus.com/"target="_blank" class="audiotuts">Audiotuts+</a></li>
+					<li><a href="http://photo.tutsplus.com/" target="_blank" class="phototuts">Phototuts+</a></li>
+					<li><a href="http://mobile.tutsplus.com/" target="_blank" class="mobiletuts">Mobiletuts+</a></li>
+					<li><a href="http://webdesign.tutsplus.com/" target="_blank" class="webdesigntuts">Webdesigntuts+</a></li>
+				</ul>
+			</aside>
+			
+			<aside class="tuts-network">
+				<ul>
+					<li><a href="http://wp.tutsplus.com/" target="_blank" class="wptuts">Wptuts+</a></li>
+					<li><a href="http://ae.tutsplus.com/" target="_blank" class="aetuts">Aetuts+</a></li>
+					<li><a href="http://cg.tutsplus.com/" target="_blank" class="cgtuts">Cgtuts+</a></li>  					
+				</ul>
+			</aside>
+		</div>
+	</section>
+	
+	<div id="footer">
+		<div class="container">
+		<p class="credit">Demo by Steven Bradley &mdash; <a href="http://www.vanseodesign.com">Vanseo Design</a></p>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,249 @@
+// http://dbushell.github.com/Responsive-Off-Canvas-Menu/step4.html
+
+
+@import "style-4";
+
+
+/* ----- checkbox fix for android ------- */
+body {
+  -webkit-animation: bugfix infinite 1s;
+}
+
+@-webkit-keyframes bugfix { 
+  from {padding:0;} 
+  to {padding:0;} 
+}
+
+
+/* ----------- nav ------------- */
+.btn {
+	background: #999;
+	padding: 0.25em 2%;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 0.25em;
+	background-color: #5b5756;
+	background-image: -webkit-linear-gradient(top, #6b6766, #5b5756);
+	background-image:    -moz-linear-gradient(top, #6b6766, #5b5756);
+	background-image:     -ms-linear-gradient(top, #6b6766, #5b5756);
+	background-image:      -o-linear-gradient(top, #6b6766, #5b5756);
+	background-image:         linear-gradient(top, #6b6766, #5b5756);
+	
+	&:hover {
+		background-color: #7b7776;
+		background-image: -webkit-linear-gradient(top, #8b8786, #7b7776);
+		background-image:    -moz-linear-gradient(top, #8b8786, #7b7776);
+		background-image:     -ms-linear-gradient(top, #8b8786, #7b7776);
+		background-image:      -o-linear-gradient(top, #8b8786, #7b7776);
+		background-image:         linear-gradient(top, #8b8786, #7b7776);
+	}
+}
+
+.btn-1 {
+	position: absolute;
+	top: 1.5em;
+	left: 5%;
+}
+
+.btn-2 {
+	position: absolute;
+	top: 1.5em;
+	right: 5%;
+}
+
+nav {
+	float: left;	
+	padding: 0;
+	background: #3b3736;
+	width: 33.334%;
+	height: 100%;
+}
+
+#nav {
+	margin: 0.1875em 0 0 0;
+	padding: 0;
+	list-style: none;
+	border-top: 1px solid #777;
+		
+	a {
+		text-decoration: none;
+		color: #fff;
+		display: block;
+		height: 4em;
+		padding: 1em 5%;
+		border-bottom: 1px solid #777;
+		background-image: -webkit-linear-gradient(top, #4b4746, #3b3736);
+		background-image:    -moz-linear-gradient(top, #4b4746, #3b3736);
+		background-image:     -ms-linear-gradient(top, #4b4746, #3b3736);
+		background-image:      -o-linear-gradient(top, #4b4746, #3b3736);
+		background-image:         linear-gradient(top, #4b4746, #3b3736);
+
+		&:hover {
+			background: #4b4746;
+			background-image: -webkit-linear-gradient(top, #5b5756, #4b4746);
+			background-image:    -moz-linear-gradient(top, #5b5756, #4b4746);
+			background-image:     -ms-linear-gradient(top, #5b5756, #4b4746);
+			background-image:      -o-linear-gradient(top, #5b5756, #4b4746);
+			background-image:         linear-gradient(top, #5b5756, #4b4746);
+		}
+	}
+}
+
+.main-content {
+	float: left;
+	width: 33.333%;
+}
+
+#sidebar {
+	float: left;
+	padding: 0 2%;
+	height: 100%;
+	width: 33.333%;
+}
+
+.wrapper {
+	width: 100%;
+	overflow: hidden;
+}
+
+.inner {
+	width: 300%;
+	margin-left: -100%;
+
+	-webkit-transition: margin 0.5s;
+	   -moz-transition: margin 0.5s;
+	    -ms-transition: margin 0.5s;
+	     -o-transition: margin 0.5s;
+	        transition: margin 0.5s;
+}
+
+
+
+/* --------- Menu Open------------ */
+.inner.menu {
+	margin-left: 0;
+}
+
+.inner.more {
+	margin-left: -200%;	
+}
+
+/* --------- Header------------ */
+header {
+	color:#eee;
+	text-align: center;
+	background: #2b2726;
+}
+
+.logo {
+	margin: 1.25em auto;
+	width: 200px;
+}
+
+
+
+/* ----------- media queries --------------------- */
+@media screen and (min-width: 48em) {
+	header {padding-bottom: 5.4em;}
+
+	.logo {
+		float: left;
+		margin-left: 5%;
+	}
+	
+	.btn-1 {
+		right: 14%;
+		left: auto;
+	}
+	
+	nav {
+		width: 25%;
+		background: none;
+	}
+	
+	#nav {
+		margin: 6em 20%;
+	
+		a {
+			background: none;
+			color: #006;
+			line-height: 1em;
+			height: 2.5em;
+			padding-left: 0;
+			
+			&:hover {
+				background: none;
+				color: #33c;
+			}
+		}
+	}
+
+	.inner {
+		width: 150%;
+		margin-left: 0;
+	}
+
+	.main-content {
+		width: 40%;
+	}
+	
+	.container {
+		padding: 0 2%;
+	}
+	
+	#content {
+		width: 100%;
+	}
+	
+	#sidebar {
+		width: 25%;
+		margin-top: 3em;
+	}
+	
+	.inner,
+	.inner.menu {
+		margin-left: 0%;
+	}
+	
+	.inner.more {
+		margin-left: -37%;
+	}
+	
+}
+
+@media screen and (min-width: 75em) {
+	.inner {width: 100%}
+	.btn {display: none;}
+	.logo {margin-left: 2%}
+	
+	nav {
+		width: 20%;
+	}
+
+	.main-content {
+		width: 53%;
+		padding: 0 2% 0 0;
+	}
+	
+	#sidebar {
+		width: 23%;
+		padding: 0 1%;
+	}
+
+	.inner,
+	.inner.more {
+		margin-left: 0%;
+
+		-webkit-transition: 0;
+		   -moz-transition: 0;
+		    -ms-transition: 0;
+		     -o-transition: 0;
+		        transition: 0;
+	}
+}
+
+@media screen and (min-width: 80em) {
+	.logo {margin-left: -1.4%}
+}
+
+// eof
